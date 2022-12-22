@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Here,
+1.Select a date range to access data
+2.Search using app names in search bar
+3.sort the data based on any attribute(column name) by clicking on the column names to sort data either in ascending or descending order
+4.Hide/Show columns by clicking the checkboxes
+## steps to run the project
+
+ `npm install`
+ `npm start`
+
+
 ## Available Scripts
 
 In the project directory, you can run:
