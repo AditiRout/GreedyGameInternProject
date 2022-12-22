@@ -61,8 +61,8 @@ const Order = () => {
   };
   return (
     <>
-      Click on the column names to get the data sorted accordingly(Data
-      available from 1st june 2021 to 30th June 2021)
+      Click on the column names to get the data sorted according to that column(Data
+      available from 1st june 2021 to 30th June 2021,select a particular range to display data in that range)
       <div className="headline">
         {listOrder.map(
           (data, index) =>
