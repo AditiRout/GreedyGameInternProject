@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Layout.css";
-import { format } from "date-fns";
-
 import axios from "axios";
 import { FormState } from "./../config/FormProvider";
 import Order from "../Order/Order";
+import HideColumn from "../HideColumn/HideColumn";
 
 const Layout = () => {
   const {
@@ -21,6 +20,15 @@ const Layout = () => {
     listOrder,
     setApps,
     apps,
+    showC,
+    showClick,
+    showDate,
+    showFill,
+    showImp,
+    showName,
+    showReq,
+    showRes,
+    showRev,
   } = FormState();
 
   const fetchData = async () => {
@@ -35,7 +43,6 @@ const Layout = () => {
       );
       if (d && data) {
         setDetails(d["data"].data);
-
         setApps(data["data"]);
         setShow(true);
       }
@@ -95,7 +102,9 @@ const Layout = () => {
         <button className="btn" onClick={filter}>
           Go
         </button>
-        <div></div>
+        <div>
+          <HideColumn />
+        </div>
       </div>
       <div>
         <table>
@@ -105,39 +114,58 @@ const Layout = () => {
             <tbody>
               {details.map((data, index) => (
                 <tr className="row" key={index}>
-                  <td className="eachrow">
-                    {data[`${Object.values(listOrder[0])}`]}
-                  </td>
-                  <td className="eachrow">
-                    {
-                      apps.filter((app) => {
-                        return (
-                          app.app_id === data[`${Object.values(listOrder[1])}`]
-                        );
-                      })[0].app_name
-                    }
-                  </td>
-                  <td className="eachrow">
-                    {data[`${Object.values(listOrder[2])}`]}
-                  </td>
-                  <td className="eachrow">
-                    {data[`${Object.values(listOrder[3])}`]}
-                  </td>
-                  <td className="eachrow">
-                    {data[`${Object.values(listOrder[4])}`]}
-                  </td>
-                  <td className="eachrow">
-                    {data[`${Object.values(listOrder[5])}`]}
-                  </td>
-                  <td className="eachrow">
-                    {data[`${Object.values(listOrder[6])}`].toFixed(3)}
-                  </td>
-                  <td className="eachrow">
-                    {((data.requests / data.responses) * 100).toFixed(3)}
-                  </td>
-                  <td className="eachrow">
-                    {((data.clicks / data.impressions) * 100).toFixed(3)}
-                  </td>
+                  {!showDate && (
+                    <td className="eachrow">
+                      {data[`${Object.values(listOrder[0])}`]}
+                    </td>
+                  )}{" "}
+                  {!showName && (
+                    <td className="eachrow">
+                      {
+                        apps.filter((app) => {
+                          return (
+                            app.app_id ===
+                            data[`${Object.values(listOrder[1])}`]
+                          );
+                        })[0].app_name
+                      }
+                    </td>
+                  )}
+                  {!showReq && (
+                    <td className="eachrow">
+                      {data[`${Object.values(listOrder[2])}`]}
+                    </td>
+                  )}
+                  {!showRes && (
+                    <td className="eachrow">
+                      {data[`${Object.values(listOrder[3])}`]}
+                    </td>
+                  )}
+                  {!showImp && (
+                    <td className="eachrow">
+                      {data[`${Object.values(listOrder[4])}`]}
+                    </td>
+                  )}
+                  {!showClick && (
+                    <td className="eachrow">
+                      {data[`${Object.values(listOrder[5])}`]}
+                    </td>
+                  )}
+                  {!showRev && (
+                    <td className="eachrow">
+                      {data[`${Object.values(listOrder[6])}`]}
+                    </td>
+                  )}
+                  {!showFill && (
+                    <td className="eachrow">
+                      {((data.requests / data.responses) * 100).toFixed(3)}
+                    </td>
+                  )}
+                  {!showC && (
+                    <td className="eachrow">
+                      {((data.clicks / data.impressions) * 100).toFixed(3)}
+                    </td>
+                  )}
                 </tr>
               ))}{" "}
             </tbody>

@@ -12,13 +12,14 @@
   
 }
 .heading_arrow {
-  color: rgb(26, 214, 1);
+  color: rgb(100, 246, 38);
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-left: 2px;
+  size: 10px;
+  margin-left: 4px;
+  margin-bottom: 2px;
 }
 
 .btn {
